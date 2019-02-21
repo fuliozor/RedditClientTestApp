@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RedditTestApp</string>
+    <string name="title_activity_main">Top posts</string>
+
+    <string name="lbl_posted_by">Posted by u/%s</string>
+    <string name="lbl_comments">%s Comments</string>
+    <string name="lbl_score">Score: %s</string>
+
+    <string name="btn_retry">Retry</string>
+
+    <string name="loading_data_error">Error while loading data</string>
+    <string name="open_link_error">Sorry. Can\'t open link</string>
+</resources>
