@@ -12,6 +12,15 @@ class Repository(private val service: RetrofitRedditService) {
                 val posts: MutableList<Post> = mutableListOf()
 
                 for (child in it.data.children) {
+                    val thumbnail = if (child.data.thumbnail == "self" ||
+                        child.data.thumbnail == "image" ||
+                        child.data.thumbnail == "default"
+                    ) {
+                        ""
+                    } else {
+                        child.data.thumbnail
+                    }
+
                     posts.add(
                         Post(
                             child.data.name,
@@ -21,7 +30,7 @@ class Repository(private val service: RetrofitRedditService) {
                             child.data.created,
                             child.data.score,
                             child.data.comments,
-                            child.data.thumbnail,
+                            thumbnail,
                             child.data.postLink
                         )
                     )

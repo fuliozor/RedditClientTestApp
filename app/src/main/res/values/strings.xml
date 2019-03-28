@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RedditTestApp</string>
+    <string name="app_name">Reddit Top Posts</string>
     <string name="title_activity_main">Top posts</string>
 
     <string name="lbl_posted_by">Posted by u/%s</string>
