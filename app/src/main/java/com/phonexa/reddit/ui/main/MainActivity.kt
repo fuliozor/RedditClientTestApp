@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.phonexa.reddit.R
 import com.phonexa.reddit.data.NetworkState
+import com.phonexa.reddit.data.StateLoaded
+import com.phonexa.reddit.data.StateLoading
 import com.phonexa.reddit.data.model.Post
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -58,8 +60,8 @@ class MainActivity : AppCompatActivity() {
 
         postsViewModel.getNetworkState().observe(this, Observer<NetworkState> {
             when (it) {
-                NetworkState.LOADING -> swipeRefreshLayout.isRefreshing = true
-                NetworkState.LOADED -> swipeRefreshLayout.isRefreshing = false
+                StateLoading -> swipeRefreshLayout.isRefreshing = true
+                StateLoaded -> swipeRefreshLayout.isRefreshing = false
                 else -> showError()
             }
         })

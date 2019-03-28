@@ -2,8 +2,7 @@ package com.phonexa.reddit.data.datasource
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.ItemKeyedDataSource
-import com.phonexa.reddit.data.NetworkState
-import com.phonexa.reddit.data.Repository
+import com.phonexa.reddit.data.*
 import com.phonexa.reddit.data.model.Post
 import io.reactivex.disposables.CompositeDisposable
 
@@ -35,7 +34,7 @@ class PostsDataSource(
         paramValue: String?,
         callback: LoadCallback<Post>
     ) {
-        networkState.postValue(NetworkState.LOADING)
+        networkState.postValue(StateLoading)
 
         val params = mutableMapOf<String, String>()
 
@@ -48,14 +47,10 @@ class PostsDataSource(
                 requestedLoadSize,
                 params
             ).subscribe({
-                networkState.postValue(NetworkState.LOADED)
-                if (paramName == null && callback is LoadInitialCallback) {
-                    callback.onResult(it)
-                } else {
-                    callback.onResult(it)
-                }
+                networkState.postValue(StateLoaded)
+                callback.onResult(it)
             }, {
-                val error = NetworkState.error(it.message)
+                val error = StateError(it.message)
                 networkState.postValue(error)
             })
         )

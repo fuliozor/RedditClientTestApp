@@ -2,11 +2,11 @@ package com.phonexa.reddit.data
 
 import com.phonexa.reddit.data.model.Post
 import com.phonexa.reddit.data.net.RetrofitRedditService
-import io.reactivex.Observable
+import io.reactivex.Single
 
 class Repository(private val service: RetrofitRedditService) {
 
-    fun top(limit: Int, additionalParams: Map<String, String>?): Observable<MutableList<Post>> {
+    fun top(limit: Int, additionalParams: Map<String, String>?): Single<MutableList<Post>> {
         return service.top(limit, additionalParams)
             .map {
                 val posts: MutableList<Post> = mutableListOf()
